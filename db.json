@@ -1,0 +1,18 @@
+{
+  "user": [
+    {
+      "name": "sone",
+      "email": "sone@gmail.com",
+      "contract": "020995589",
+      "address": "salakham",
+      "id": 1
+    },
+    {
+      "name": "daky",
+      "email": "daky@gmail.com",
+      "contract": "020995589",
+      "address": "salakham",
+      "id": 3
+    }
+  ]
+}
