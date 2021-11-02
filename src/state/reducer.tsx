@@ -18,10 +18,18 @@ const usersReducers = (
         case ActionsType.GET_USERS:
             return { ...state, users: action.payload, loading: false }
         case ActionsType.DELETE_USER:
+        case ActionsType.ADD_USER:
             return {
                 ...state,
                 loading: false,
             }
+        case ActionsType.GET_SINGLE_USER:
+            return {
+                ...state,
+                user: action.payload,
+                loading: false,
+            }
+        case ActionsType.UPDATE_USER:
         default:
             return state
     }

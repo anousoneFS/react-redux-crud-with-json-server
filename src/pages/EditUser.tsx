@@ -1,6 +1,7 @@
-import React, { useState } from "react"
-import { useHistory } from "react-router-dom"
-import { useDispatch } from "react-redux"
+import React, { useState, useEffect } from "react"
+import { rootReducerType } from "../state/root-reducer"
+import { useHistory, useParams } from "react-router-dom"
+import { useDispatch, useSelector } from "react-redux"
 import {
     TextField,
     makeStyles,
@@ -9,7 +10,7 @@ import {
     Button,
     Typography,
 } from "@material-ui/core"
-import { addUser } from "../state/action"
+import { getSingleUser, updateUser } from "../state/action"
 
 const useStyles = makeStyles((theme: Theme) => ({
     root: {
@@ -28,9 +29,13 @@ const useStyles = makeStyles((theme: Theme) => ({
         marginTop: "20px",
     },
 }))
+interface ParamTypes {
+    id: string
+}
 
-function AddUser() {
+function EditUser() {
     const classes = useStyles()
+    const { user } = useSelector((state: rootReducerType) => state.data)
     const [state, setState] = useState({
         name: "",
         email: "",
@@ -40,6 +45,19 @@ function AddUser() {
     const [error, setError] = useState("")
     const { name, email, contract, address } = state
     let dispatch = useDispatch()
+    let history = useHistory()
+    let { id } = useParams<ParamTypes>()
+
+    useEffect(() => {
+        dispatch(getSingleUser(id))
+    }, [])
+
+    useEffect(() => {
+        if (user) {
+            setState({ ...user })
+        }
+    }, [user])
+
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const { name, value } = e.target
         setState({ ...state, [name]: value })
@@ -49,18 +67,17 @@ function AddUser() {
         if (!name || !email || !contract || !address) {
             setError("please enter all input field")
         } else {
-            dispatch(addUser(state))
+            dispatch(updateUser(state, id))
             setError("")
             history.push("/")
         }
     }
-    let history = useHistory()
 
     return (
         <div className={classes.root}>
             <div className={classes.box}>
                 <form onSubmit={handleSubmit} noValidate autoComplete="off">
-                    <Grid container xs={12} direction="column" spacing={2}>
+                    <Grid container direction="column" spacing={2}>
                         <Grid item style={{ textAlign: "center" }}>
                             <Button
                                 variant="outlined"
@@ -71,7 +88,7 @@ function AddUser() {
                             </Button>
                         </Grid>
                         <Grid item style={{ textAlign: "center" }}>
-                            <Typography variant="h4">Add User</Typography>
+                            <Typography variant="h4">Edit User</Typography>
                             {error && <h3>{error}</h3>}
                         </Grid>
                         <Grid item>
@@ -82,7 +99,7 @@ function AddUser() {
                                 variant="outlined"
                                 fullWidth
                                 name="name"
-                                value={state.name}
+                                value={state.name || ""}
                                 onChange={handleChange}
                             />
                         </Grid>
@@ -95,7 +112,7 @@ function AddUser() {
                                 fullWidth
                                 type="email"
                                 name="email"
-                                value={state.email}
+                                value={state.email || ""}
                                 onChange={handleChange}
                             />
                         </Grid>
@@ -108,7 +125,7 @@ function AddUser() {
                                 fullWidth
                                 type="tel"
                                 name="contract"
-                                value={state.contract}
+                                value={state.contract || ""}
                                 onChange={handleChange}
                             />
                         </Grid>
@@ -120,7 +137,7 @@ function AddUser() {
                                 variant="outlined"
                                 fullWidth
                                 name="address"
-                                value={state.address}
+                                value={state.address || ""}
                                 onChange={handleChange}
                             />
                         </Grid>
@@ -130,7 +147,7 @@ function AddUser() {
                             style={{ margin: "0px 30px" }}
                             type="submit"
                         >
-                            Submit
+                            Update
                         </Button>
                     </Grid>
                 </form>
@@ -139,4 +156,4 @@ function AddUser() {
     )
 }
 
-export default AddUser
+export default EditUser

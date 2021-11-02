@@ -57,6 +57,7 @@ export default function Home() {
             setId(id)
         }
     }
+
     return (
         <TableContainer component={Paper}>
             <div
@@ -117,7 +118,16 @@ export default function Home() {
                                         >
                                             Delete
                                         </Button>
-                                        <Button color="primary">Edit</Button>
+                                        <Button
+                                            color="primary"
+                                            onClick={() =>
+                                                history.push(
+                                                    `/edit-user/${user.id}`
+                                                )
+                                            }
+                                        >
+                                            Edit
+                                        </Button>
                                     </ButtonGroup>
                                 </StyledTableCell>
                             </StyledTableuser>

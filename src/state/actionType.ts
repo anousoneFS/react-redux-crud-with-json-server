@@ -1,7 +1,9 @@
 export enum ActionsType {
     GET_USERS = "getUser",
-    ADD = "addUser",
+    ADD_USER = "ADD_USER",
     DELETE_USER = "DELETE_USER",
+    UPDATE_USER = "UPDATE_USER",
+    GET_SINGLE_USER = "GET_SINGLE_USER",
 }
 
 export interface UsersType {

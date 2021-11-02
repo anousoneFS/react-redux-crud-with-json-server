@@ -1,10 +1,10 @@
 {
   "user": [
     {
-      "name": "sone",
+      "name": "sone anousone",
       "email": "sone@gmail.com",
       "contract": "020995589",
-      "address": "salakham",
+      "address": "salakham tai",
       "id": 1
     },
     {
@@ -13,6 +13,13 @@
       "contract": "020995589",
       "address": "salakham",
       "id": 3
+    },
+    {
+      "name": "thongdee",
+      "email": "dee@gmail.com",
+      "contract": "02099443999",
+      "address": "banban",
+      "id": 4
     }
   ]
 }
