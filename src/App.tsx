@@ -4,6 +4,7 @@ import AddUser from "./pages/AddUser"
 import { Switch, Route } from "react-router-dom"
 import "./App.css"
 import EditUser from "./pages/EditUser"
+import BtnMain from "./pages/BtnMain"
 
 function App() {
     return (
@@ -11,7 +12,8 @@ function App() {
             <Switch>
                 <Route exact path="/" component={Home} />
                 <Route path="/add-user" component={AddUser} />
-                <Route exact path="/edit-user/:id" component={EditUser} />
+                <Route path="/edit-user/:id" component={EditUser} />
+                <Route path="/btn" component={BtnMain} />
             </Switch>
         </div>
     )

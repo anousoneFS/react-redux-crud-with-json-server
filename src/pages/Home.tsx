@@ -74,6 +74,14 @@ export default function Home() {
                 >
                     Add User
                 </Button>
+                <Button
+                    variant="contained"
+                    color="primary"
+                    onClick={() => history.push("/btn")}
+                    style={{ marginLeft: "20px" }}
+                >
+                    Button
+                </Button>
             </div>
             <Table className={classes.table} aria-label="customized table">
                 <TableHead>
