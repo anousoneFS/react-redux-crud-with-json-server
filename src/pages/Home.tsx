@@ -80,7 +80,7 @@ export default function Home() {
                     onClick={() => history.push("/btn")}
                     style={{ marginLeft: "20px" }}
                 >
-                    Button
+                    Counter
                 </Button>
             </div>
             <Table className={classes.table} aria-label="customized table">
